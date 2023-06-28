@@ -1,0 +1,6 @@
+# dune init proj pythonInterpreterInOcaml
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root:
+# /Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter
+# Auto-detected concurrency: 8
