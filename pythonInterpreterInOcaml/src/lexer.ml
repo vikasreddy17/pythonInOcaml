@@ -25,6 +25,12 @@ let tokenize input =
     else if Str.string_match (Str.regexp "/") input index then
       Token_Divide::(tokenize_helper (index + 1))
 
+    else if Str.string_match (Str.regexp "(") input index then
+      Token_LParen::(tokenize_helper (index + 1))
+
+    else if Str.string_match (Str.regexp ")") input index then
+      Token_RParen::(tokenize_helper (index + 1))
+
     else
       tokenize_helper (index + 1)
 

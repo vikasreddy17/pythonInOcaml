@@ -20,6 +20,6 @@ Clflags.include_dirs :=
   ; "/Users/vikasreddy/.opam/4.13.0/lib/uuseg"
   ; "/Users/vikasreddy/.opam/4.13.0/lib/uutf"
   ; "/Users/vikasreddy/.opam/4.13.0/lib/zed"
-  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/pythonInterpreterInOcaml/_build/default/src/.interpreter.objs/byte"
+  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/pythonInterpreterInOcaml/_build/default/src/.interpreter.objs/byte"
   ];
 UTop_main.main ();

@@ -5,4 +5,6 @@ type token =
   | Token_Subtract
   | Token_Multiply
   | Token_Divide
+  | Token_LParen
+  | Token_RParen
   | Token_Integer of int

@@ -1,4 +1,4 @@
 (library
  (name interpreter)
- (modules name tokenTypes pythonTypes lexer)
+ (modules name tokenTypes pythonTypes lexer parser utils eval)
  (libraries str))
