@@ -1,6 +1,7 @@
 open TokenTypes
 
-let string_of_token (t : token) : string = match t with
+let string_of_token (t : token) : string = 
+  match t with
   | Token_Add -> "Token_Add"
   | Token_Subtract -> "Token_Subtract"
   | Token_Multiply -> "Token_Multiply"
@@ -8,6 +9,8 @@ let string_of_token (t : token) : string = match t with
   | Token_LParen -> "Token_LParen"
   | Token_RParen -> "Token_RParen"
   | Token_Integer(i) -> "Token_Integer(" ^ (string_of_int i) ^ ")"
+  | Token_Id(id) -> "Token_Id(" ^ (id) ^ ")"
+  | Token_Assignment -> "Token_Assignment"
 
 let string_of_list ?newline:(newline=false) (f : 'a -> string) (l : 'a list) : string =
   "[" ^ (String.concat ", " @@ List.map f l) ^ "]" ^ (if newline then "\n" else "");;

@@ -1,3 +1,5 @@
+open PythonTypes
+
 exception InvalidInputException of string
 
 type token =
@@ -8,3 +10,5 @@ type token =
   | Token_LParen
   | Token_RParen
   | Token_Integer of int
+  | Token_Id of id
+  | Token_Assignment

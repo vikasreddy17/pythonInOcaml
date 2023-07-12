@@ -2,4 +2,4 @@ open PythonTypes
 
 exception DivByZeroError
 
-val eval: expr -> environment -> value
+val eval: expr -> environment -> obj * environment
