@@ -1,6 +1,6 @@
 (lang dune 3.6)
 
-(name pythonInterpreterInOcaml)
+(name interpreter)
 
 (generate_opam_files true)
 
