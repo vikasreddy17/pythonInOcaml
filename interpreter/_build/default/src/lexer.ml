@@ -13,8 +13,11 @@ let tokenize input =
       let num = int_of_string value in
       Token_Integer num::(tokenize_helper (index + shift))
 
+    else if Str.string_match (Str.regexp "\n") input index then
+      Token_EndLine::(tokenize_helper (index + 1))
+
     else if Str.string_match (Str.regexp "None") input index then
-      Token_Assignment::(tokenize_helper (index + 1))
+      Token_None::(tokenize_helper (index + 1))
 
     else if Str.string_match (Str.regexp "=") input index then
       Token_Assignment::(tokenize_helper (index + 1))

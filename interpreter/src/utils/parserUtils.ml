@@ -13,6 +13,7 @@ let string_of_token (t : token) : string =
   | Token_None -> "Token_None"
   | Token_Id(id) -> "Token_Id(" ^ (id) ^ ")"
   | Token_Assignment -> "Token_Assignment"
+  | Token_EndLine -> "Token_EndLine"
 
 let string_of_list ?newline:(newline=false) (f : 'a -> string) (l : 'a list) : string =
   "[" ^ (String.concat ", " @@ List.map f l) ^ "]" ^ (if newline then "\n" else "");;

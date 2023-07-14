@@ -4,12 +4,22 @@ open FunctionCalls.FunctionRouter
 exception TypeError of string
 exception DivByZeroError
 
-let rec eval stmt env = 
+
+let rec eval stmts env =
+  match stmts with
+  | [] -> (Object(None), env)
+  | h::t -> 
+    let (_, env') = eval_stmt h env in
+    eval t env'
+
+and eval_stmt stmt env = 
   match stmt with
-  | Var(id) -> (Var(id), env)
+  | Var(id) -> 
+    let obj = Hashtbl.find env id in
+    (obj, env)
   | Object(obj) -> eval_value obj env
   | Assignment(id, e') -> 
-    let (obj, env) = eval e' env in
+    let (obj, env) = eval_stmt e' env in
     Hashtbl.add env id obj;
     (obj, env)
   | FunctionCall(id, params) -> eval_functionCall id params env
@@ -24,12 +34,12 @@ and eval_functionCall id params env =
   let rec eval_functionParams ps e =
     match ps with
     | [] -> []
-    | h::t -> let (obj, _) = (eval h e) in obj::(eval_functionParams t e)
+    | h::t -> let (obj, _) = (eval_stmt h e) in obj::(eval_functionParams t e)
   in
   function_router id (eval_functionParams params env) env
     
 and eval_binOp op e1 e2 env =
-  match op, (eval e1 env), (eval e2 env) with
+  match op, (eval_stmt e1 env), (eval_stmt e2 env) with
   | Add, (Object(Int(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 + i2)), env)
   | Subtract, (Object(Int(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 - i2)), env)
   | Multiply, (Object(Int(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 * i2)), env)

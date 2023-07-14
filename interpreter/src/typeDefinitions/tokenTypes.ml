@@ -14,3 +14,4 @@ type token =
   | Token_None
   | Token_Id of id
   | Token_Assignment
+  | Token_EndLine
