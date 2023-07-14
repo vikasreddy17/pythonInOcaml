@@ -1,10 +1,10 @@
-# dune exec --display=quiet pythonInterpreter ../sample_1.py
+# dune utop src
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root:
 # /Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter
 # Auto-detected concurrency: 8
-$ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/dune_07a2f8_output
+$ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/dune_79116c_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -113,3 +113,13 @@ $ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786
 #      ; windows_unicode = false
 #      }
 #  }
+$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.interpreter.objs/byte -I src/functionCalls/.functionCalls.objs/byte -I src/typeDefinitions/.typeDefinitions.objs/byte -I src/utils/.utils.objs/byte -intf-suffix .ml -no-alias-deps -opaque -open Interpreter -o src/.interpreter.objs/byte/interpreter__Parser.cmo -c -impl src/parser.ml)
+$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/interpreter.cma src/.interpreter.objs/byte/interpreter.cmo src/.interpreter.objs/byte/interpreter__Parser.cmo src/.interpreter.objs/byte/interpreter__Name.cmo src/.interpreter.objs/byte/interpreter__Lexer.cmo src/.interpreter.objs/byte/interpreter__Eval.cmo)
+$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o src/.utop/utop.exe -output-complete-exe /Users/vikasreddy/.opam/4.13.0/lib/ocaml/compiler-libs/ocamlcommon.cma /Users/vikasreddy/.opam/4.13.0/lib/ocaml/compiler-libs/ocamlbytecomp.cma /Users/vikasreddy/.opam/4.13.0/lib/ocaml/compiler-libs/ocamltoplevel.cma /Users/vikasreddy/.opam/4.13.0/lib/findlib/findlib.cma /Users/vikasreddy/.opam/4.13.0/lib/findlib/findlib_top.cma /Users/vikasreddy/.opam/4.13.0/lib/logs/logs.cma -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml /Users/vikasreddy/.opam/4.13.0/lib/lwt/lwt.cma /Users/vikasreddy/.opam/4.13.0/lib/logs/logs_lwt.cma /Users/vikasreddy/.opam/4.13.0/lib/ocaml/unix.cma -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml /Users/vikasreddy/.opam/4.13.0/lib/ocaml/bigarray.cma -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml /Users/vikasreddy/.opam/4.13.0/lib/ocplib-endian/ocplib_endian.cma /Users/vikasreddy/.opam/4.13.0/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /Users/vikasreddy/.opam/4.13.0/lib/ocaml/threads/threads.cma -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml /Users/vikasreddy/.opam/4.13.0/lib/lwt/unix/lwt_unix.cma -I /Users/vikasreddy/.opam/4.13.0/lib/lwt/unix /Users/vikasreddy/.opam/4.13.0/lib/react/react.cma /Users/vikasreddy/.opam/4.13.0/lib/lwt_react/lwt_react.cma /Users/vikasreddy/.opam/4.13.0/lib/result/result.cma /Users/vikasreddy/.opam/4.13.0/lib/uutf/uutf.cma /Users/vikasreddy/.opam/4.13.0/lib/uucp/uucp.cma /Users/vikasreddy/.opam/4.13.0/lib/uuseg/uuseg.cma /Users/vikasreddy/.opam/4.13.0/lib/zed/zed.cma /Users/vikasreddy/.opam/4.13.0/lib/trie/trie.cma /Users/vikasreddy/.opam/4.13.0/lib/mew/mew.cma /Users/vikasreddy/.opam/4.13.0/lib/mew_vi/mew_vi.cma /Users/vikasreddy/.opam/4.13.0/lib/lambda-term/lambda_term.cma -I /Users/vikasreddy/.opam/4.13.0/lib/lambda-term /Users/vikasreddy/.opam/4.13.0/lib/utop/uTop.cma /Users/vikasreddy/.opam/4.13.0/lib/ocaml/str.cma -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml src/typeDefinitions/typeDefinitions.cma src/functionCalls/functionCalls.cma src/utils/utils.cma src/interpreter.cma src/.utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)
+> /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/build_d0a193_dune/camlobj32d061.c:363695:14: warning: a function declaration without a prototype is deprecated in all versions of C and is not supported in C2x [-Wdeprecated-non-prototype]
+> extern value caml_get_public_method();
+>              ^
+> /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/build_d0a193_dune/camlobj32d061.c:363875:14: warning: a function declaration without a prototype is deprecated in all versions of C and is not supported in C2x [-Wdeprecated-non-prototype]
+> extern value caml_set_oo_id();
+>              ^
+> 2 warnings generated.

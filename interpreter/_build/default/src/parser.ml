@@ -19,7 +19,7 @@ and parse_assignmentStmt tokens =
   | Some [Token_Id id; Token_Assignment]->
     let t = match_token tokens (Token_Id id) in
     let t' = match_token t Token_Assignment in
-    let (t'', stmt) = parse_mathStmt t' in
+    let (t'', stmt) = parse_additiveStmt t' in
     (t'', Assignment(id, stmt))
   | _ -> parse_functionCallStmt tokens
 
@@ -30,7 +30,7 @@ and parse_functionCallStmt tokens =
     let t' = match_token t Token_LParen in
     let (t'', stmts) = parse_functionCallParameters t' in
     (t'', FunctionCall(id, stmts))
-  | _ -> parse_mathStmt tokens
+  | _ -> parse_additiveStmt tokens
 
 and parse_functionCallParameters tokens =
   let (t, stmt) = parse_stmt tokens in
@@ -44,26 +44,31 @@ and parse_functionCallParameters tokens =
     (t'', stmt::(stmts))
   | _ -> raise (InvalidInputException("Function parameter error"))
 
-and parse_mathStmt tokens =
-  let (t, primarystmt) = parse_primaryStmt tokens in
+  and parse_additiveStmt tokens =
+  let (t, multiplicativeStmt) = parse_multiplicativeStmt tokens in
   match lookahead t with
-  | Some Token_Add ->
-    let t' = match_token t Token_Add in
-    let (t'', additivestmt) = parse_mathStmt t' in
-    (t'', BinOp(Add, primarystmt, additivestmt))
-  | Some Token_Subtract ->
-    let t' = match_token t Token_Subtract in
-    let (t'', additivestmt) = parse_mathStmt t' in
-    (t'', BinOp(Subtract, primarystmt, additivestmt))
-  | Some Token_Multiply ->
-    let t' = match_token t Token_Multiply in
-    let (t'', additivestmt) = parse_mathStmt t' in
-    (t'', BinOp(Multiply, primarystmt, additivestmt))
-  | Some Token_Divide ->
-    let t' = match_token t Token_Divide in
-    let (t'', additivestmt) = parse_mathStmt t' in
-    (t'', BinOp(Divide, primarystmt, additivestmt))
-  | _ -> (t, primarystmt)
+    | Some Token_Add ->
+      let t' = match_token t Token_Add in
+      let (t'', additiveStmt) = parse_additiveStmt t' in
+      (t'', BinOp(Add, multiplicativeStmt, additiveStmt))
+    | Some Token_Subtract ->
+      let t' = match_token t Token_Subtract in
+      let (t'', additiveStmt) = parse_additiveStmt t' in
+      (t'', BinOp(Subtract, multiplicativeStmt, additiveStmt))
+    | _ -> (t, multiplicativeStmt)
+
+and parse_multiplicativeStmt tokens =
+  let (t, primaryStmt) = parse_primaryStmt tokens in
+  match lookahead t with
+    | Some Token_Multiply ->
+      let t' = match_token t Token_Multiply in
+      let (t'', multiplicativeStmt) = parse_multiplicativeStmt t' in
+      (t'', BinOp(Multiply, primaryStmt, multiplicativeStmt))
+    | Some Token_Divide ->
+      let t' = match_token t Token_Divide in
+      let (t'', multiplicativeStmt) = parse_multiplicativeStmt t' in
+      (t'', BinOp(Divide, primaryStmt, multiplicativeStmt))
+    | _ -> (t, primaryStmt)
 
 and parse_primaryStmt toks =
   match lookahead toks with
