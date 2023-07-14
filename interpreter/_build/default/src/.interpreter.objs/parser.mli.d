@@ -1,1 +1,1 @@
-src/parser.mli: PythonTypes TokenTypes
+src/parser.mli: TypeDefinitions

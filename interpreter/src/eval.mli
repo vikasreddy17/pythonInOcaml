@@ -1,4 +1,4 @@
-open PythonTypes
+open TypeDefinitions.PythonTypes
 
 exception DivByZeroError
 

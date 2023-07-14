@@ -1,6 +1,6 @@
-open PythonTypes
-open TokenTypes
-open Utils
+open TypeDefinitions.PythonTypes
+open TypeDefinitions.TokenTypes
+open Utils.ParserUtils
 
 let rec parse tokens = 
   parse_assignmentStmt tokens

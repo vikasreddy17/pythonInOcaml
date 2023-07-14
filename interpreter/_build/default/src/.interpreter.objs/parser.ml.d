@@ -1,1 +1,1 @@
-src/parser.ml: PythonTypes TokenTypes Utils
+src/parser.ml: TypeDefinitions Utils

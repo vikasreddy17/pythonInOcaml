@@ -1,1 +1,1 @@
-src/lexer.mli: TokenTypes
+src/lexer.mli: TypeDefinitions

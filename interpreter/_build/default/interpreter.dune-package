@@ -1,4 +1,4 @@
 (lang dune 3.6)
 (name interpreter)
 (sections (lib .) (bin ../../bin))
-(files (lib (META dune-package opam)) (bin (pythonInterpreterInOcaml)))
+(files (lib (META dune-package opam)) (bin (pythonInterpreter)))

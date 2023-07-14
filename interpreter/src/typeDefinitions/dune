@@ -1,0 +1,4 @@
+(library
+ (name typeDefinitions)
+ (modules pythonTypes tokenTypes)
+ (libraries str))

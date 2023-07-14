@@ -4,5 +4,5 @@ lib: [
   "_build/install/default/lib/interpreter/opam"
 ]
 bin: [
-  "_build/install/default/bin/pythonInterpreterInOcaml"
+  "_build/install/default/bin/pythonInterpreter"
 ]

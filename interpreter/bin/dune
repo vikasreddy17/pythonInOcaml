@@ -1,4 +1,4 @@
 (executable
- (public_name pythonInterpreterInOcaml)
+ (public_name pythonInterpreter)
  (name main)
  (libraries interpreter))

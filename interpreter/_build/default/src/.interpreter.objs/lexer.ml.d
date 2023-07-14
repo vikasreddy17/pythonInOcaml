@@ -1,1 +1,1 @@
-src/lexer.ml: Str String TokenTypes
+src/lexer.ml: Str String TypeDefinitions

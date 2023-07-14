@@ -1,4 +1,5 @@
-open PythonTypes
+open TypeDefinitions.PythonTypes
+open FunctionCalls.FunctionRouter
 
 exception TypeError of string
 exception DivByZeroError
@@ -17,15 +18,15 @@ let rec eval stmt env =
 and eval_value obj env = 
   match obj with
   | Int(i) -> (Object(Int(i)), env)
+  | None -> (Object(None), env)
 
-and eval_functionCall _ params env =
-  match params with
-  | [] -> print_endline ""; (Object(Int(0)), env)
-  | stmt::_ -> 
-    let (stmt', env') = (eval stmt env) in
-    match stmt' with
-    | Object(Int(num)) -> print_endline (string_of_int num); (stmt', env')
-    | _ -> (stmt', env')
+and eval_functionCall id params env =
+  let rec eval_functionParams ps e =
+    match ps with
+    | [] -> []
+    | h::t -> let (obj, _) = (eval h e) in obj::(eval_functionParams t e)
+  in
+  function_router id (eval_functionParams params env) env
     
 and eval_binOp op e1 e2 env =
   match op, (eval e1 env), (eval e2 env) with
