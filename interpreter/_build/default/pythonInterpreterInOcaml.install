@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/pythonInterpreterInOcaml/META"
-  "_build/install/default/lib/pythonInterpreterInOcaml/dune-package"
-  "_build/install/default/lib/pythonInterpreterInOcaml/opam"
-]
-bin: [
-  "_build/install/default/bin/pythonInterpreterInOcaml"
-]

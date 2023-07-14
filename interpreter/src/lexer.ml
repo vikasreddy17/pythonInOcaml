@@ -34,6 +34,9 @@ let tokenize input =
     else if Str.string_match (Str.regexp ")") input index then
       Token_RParen::(tokenize_helper (index + 1))
 
+    else if Str.string_match (Str.regexp ",") input index then
+      Token_Comma::(tokenize_helper (index + 1))
+
     else if Str.string_match (Str.regexp "[a-zA-Z][a-zA-Z0-9]*") input index then
       let value = Str.matched_string input in
       let shift = String.length value in

@@ -14,7 +14,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name pythonInterpreterInOcaml)
+ (name interpreter)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune)

@@ -1,13 +1,15 @@
 type op = Add | Subtract | Multiply | Divide
 
+and id = string
+
 and obj =
   | Int of int
 
-and id = string
+and environment = (id, stmt) Hashtbl.t
 
-and environment = (id, obj) Hashtbl.t
-
-and expr =
+and stmt =
+  | Var of id
   | Object of obj
-  | Assignment of id * expr
-  | BinOp of op * expr * expr
+  | Assignment of id * stmt
+  | BinOp of op * stmt * stmt
+  | FunctionCall of id * stmt list
