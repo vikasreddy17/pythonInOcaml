@@ -8,7 +8,7 @@ let rec parse tokens stmts =
   | None -> (tokens',stmt::stmts)
   | Some Token_EndLine -> 
     let tokens'' = match_token tokens' (Token_EndLine) in
-    if tokens'' = [] then (tokens'',stmt::stmts) else parse tokens'' (stmt::stmts)
+    if tokens'' = [] then (tokens'', stmt::stmts) else parse tokens'' (stmt::stmts)
   | _ -> raise (InvalidInputException("Syntax"))
 
 and parse_stmt tokens = 
@@ -33,15 +33,15 @@ and parse_functionCallStmt tokens =
   | _ -> parse_additiveStmt tokens
 
 and parse_functionCallParameters tokens =
-  let (t, stmt) = parse_stmt tokens in
+  let (t, param) = parse_stmt tokens in
   match lookahead t with
   | Some Token_RParen -> 
     let t' = match_token t Token_RParen in
-    (t', [stmt])
+    (t', [param])
   | Some Token_Comma ->
     let t' = match_token t Token_Comma in
-    let (t'', stmts) = parse_functionCallParameters t' in
-    (t'', stmt::(stmts))
+    let (t'', params) = parse_functionCallParameters t' in
+    (t'', param::(params))
   | _ -> raise (InvalidInputException("Function parameter error"))
 
   and parse_additiveStmt tokens =
@@ -79,6 +79,7 @@ and parse_primaryStmt toks =
     let (t', s) = parse_stmt t in
     let t'' = match_token t' Token_RParen in
     (t'', s)
+  | Some Token_None -> let t = match_token toks (Token_None) in (t, Object(None))
   | Some s -> raise (InvalidInputException((string_of_token s)))
   | _ -> raise (InvalidInputException("badd"))
 

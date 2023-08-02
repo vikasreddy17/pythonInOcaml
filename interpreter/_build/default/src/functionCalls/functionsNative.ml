@@ -8,6 +8,7 @@ let native_print (params : stmt list) (env : environment) : stmt * environment =
   | stmt::_ -> 
     match stmt with
     | Object(Int(num)) -> print_endline (string_of_int num); (Object(None), env)
+    | Object(None) -> print_endline "None"; (Object(None), env)
     | _ -> (Object(None), env)
 
 

@@ -17,7 +17,7 @@ let tokenize input =
       Token_EndLine::(tokenize_helper (index + 1))
 
     else if Str.string_match (Str.regexp "None") input index then
-      Token_None::(tokenize_helper (index + 1))
+      Token_None::(tokenize_helper (index + 4))
 
     else if Str.string_match (Str.regexp "=") input index then
       Token_Assignment::(tokenize_helper (index + 1))
