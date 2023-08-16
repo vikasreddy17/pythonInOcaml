@@ -7,6 +7,18 @@ let tokenize input =
     if index >= length then
       []
 
+    else if Str.string_match (Str.regexp "[-]?[0]?\\.[0-9]+") input index then
+      let value = Str.matched_string input in
+      let shift = String.length value in
+      let num = float_of_string value in
+      Token_Float num::(tokenize_helper (index + shift))
+
+    else if Str.string_match (Str.regexp "[-]?[0-9]+\\.[0-9]+") input index then
+      let value = Str.matched_string input in
+      let shift = String.length value in
+      let num =  float_of_string ("0" ^ value) in
+      Token_Float num::(tokenize_helper (index + shift))
+    
     else if Str.string_match (Str.regexp "[-]?[0-9]+") input index then
       let value = Str.matched_string input in
       let shift = String.length value in
@@ -18,6 +30,12 @@ let tokenize input =
 
     else if Str.string_match (Str.regexp "None") input index then
       Token_None::(tokenize_helper (index + 4))
+
+    else if Str.string_match (Str.regexp "True") input index then
+      Token_Boolean 1::(tokenize_helper (index + 4))
+
+    else if Str.string_match (Str.regexp "False") input index then
+      Token_Boolean 0::(tokenize_helper (index + 5))
 
     else if Str.string_match (Str.regexp "=") input index then
       Token_Assignment::(tokenize_helper (index + 1))

@@ -10,8 +10,10 @@ let string_of_token (t : token) : string =
   | Token_RParen -> "Token_RParen"
   | Token_Comma -> "Token_Comma"
   | Token_Integer(i) -> "Token_Integer(" ^ (string_of_int i) ^ ")"
+  | Token_Float(f) -> "Token_Float(" ^ (string_of_float f) ^ ")"
   | Token_None -> "Token_None"
   | Token_Id(id) -> "Token_Id(" ^ (id) ^ ")"
+  | Token_Boolean(i) -> "Token_Boolean(" ^ (string_of_int i) ^ ")"
   | Token_Assignment -> "Token_Assignment"
   | Token_EndLine -> "Token_EndLine"
 

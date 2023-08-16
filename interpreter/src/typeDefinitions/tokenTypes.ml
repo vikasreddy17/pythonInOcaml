@@ -11,6 +11,8 @@ type token =
   | Token_RParen
   | Token_Comma
   | Token_Integer of int
+  | Token_Float of float
+  | Token_Boolean of int
   | Token_None
   | Token_Id of id
   | Token_Assignment

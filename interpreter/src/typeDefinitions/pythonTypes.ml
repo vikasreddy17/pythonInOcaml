@@ -5,6 +5,8 @@ and id = string
 and obj =
   | None
   | Int of int
+  | Float of float
+  | Boolean of int
 
 and environment = (id, stmt) Hashtbl.t
 

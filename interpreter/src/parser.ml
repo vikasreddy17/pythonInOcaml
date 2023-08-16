@@ -9,7 +9,7 @@ let rec parse tokens stmts =
   | Some Token_EndLine -> 
     let tokens'' = match_token tokens' (Token_EndLine) in
     if tokens'' = [] then (tokens'', stmt::stmts) else parse tokens'' (stmt::stmts)
-  | _ -> raise (InvalidInputException("Syntax"))
+  | Some s -> raise (InvalidInputException(string_of_token s))
 
 and parse_stmt tokens = 
   parse_assignmentStmt tokens
@@ -72,15 +72,17 @@ and parse_multiplicativeStmt tokens =
 
 and parse_primaryStmt toks =
   match lookahead toks with
-  | Some Token_Integer num -> let t = match_token toks (Token_Integer num) in (t, Object(Int(num)))
   | Some Token_Id id -> let t = match_token toks (Token_Id id) in (t, Var(id))
+  | Some Token_Integer num -> let t = match_token toks (Token_Integer num) in (t, Object(Int(num)))
+  | Some Token_Float num -> let t = match_token toks (Token_Float num) in (t, Object(Float(num)))
+  | Some Token_Boolean b -> let t = match_token toks (Token_Boolean b) in (t, Object(Boolean(b)))
+  | Some Token_None -> let t = match_token toks (Token_None) in (t, Object(None))
   | Some Token_LParen -> 
     let t = match_token toks Token_LParen in
     let (t', s) = parse_stmt t in
     let t'' = match_token t' Token_RParen in
     (t'', s)
-  | Some Token_None -> let t = match_token toks (Token_None) in (t, Object(None))
-  | Some s -> raise (InvalidInputException((string_of_token s)))
+  | Some Token_EndLine -> (toks, Object(None))
   | _ -> raise (InvalidInputException("badd"))
 
 let parse_wrapper tokens =

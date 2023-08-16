@@ -1,1 +1,1 @@
-src/functionCalls/functionsNative.ml: TypeDefinitions
+src/functionCalls/functionsNative.ml: String TypeDefinitions
