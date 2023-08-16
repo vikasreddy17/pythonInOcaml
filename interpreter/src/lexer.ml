@@ -31,11 +31,17 @@ let tokenize input =
     else if Str.string_match (Str.regexp "None") input index then
       Token_None::(tokenize_helper (index + 4))
 
-    else if Str.string_match (Str.regexp "True") input index then
-      Token_Boolean 1::(tokenize_helper (index + 4))
+    else if Str.string_match (Str.regexp "[-]?True") input index then
+      let value = Str.matched_string input in
+      let shift = String.length value in
+      if shift = 4 then Token_Boolean 1::(tokenize_helper (index + shift))
+      else [Token_LParen; Token_Integer (-1); Token_Multiply; Token_Boolean 1; Token_RParen] 
+            @ (tokenize_helper (index + shift))
 
-    else if Str.string_match (Str.regexp "False") input index then
-      Token_Boolean 0::(tokenize_helper (index + 5))
+    else if Str.string_match (Str.regexp "[-]?False") input index then
+      let value = Str.matched_string input in
+      let shift = String.length value in
+      Token_Boolean 0::(tokenize_helper (index + shift))
 
     else if Str.string_match (Str.regexp "=") input index then
       Token_Assignment::(tokenize_helper (index + 1))

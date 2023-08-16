@@ -1,10 +1,6 @@
 open TypeDefinitions.PythonTypes
 open FunctionCalls.FunctionRouter
 
-exception TypeError of string
-exception DivByZeroError
-
-
 let rec eval stmts env =
   match stmts with
   | [] -> (Object(None), env)
@@ -63,8 +59,8 @@ and eval_binOp op e1 e2 env =
   | Add, (Object(Boolean(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 + i2)), env)
   | Subtract, (Object(Int(i1)), _), (Object(Boolean(i2)), _) -> (Object(Int(i1 - i2)), env)
   | Subtract, (Object(Boolean(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 - i2)), env)
-  | Multiply, (Object(Int(i1)), _), (Object(Boolean(i2)), _) -> (Object(Int(i1 - i2)), env)
-  | Multiply, (Object(Boolean(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 - i2)), env)
+  | Multiply, (Object(Int(i1)), _), (Object(Boolean(i2)), _) -> (Object(Int(i1 * i2)), env)
+  | Multiply, (Object(Boolean(i1)), _), (Object(Int(i2)), _) -> (Object(Int(i1 * i2)), env)
   | Divide, (Object(Int(i1)), _), (Object(Boolean(i2)), _) -> if i2 = 0 then raise DivByZeroError else (Object(Int(i1 / i2)), env)
   | Divide, (Object(Boolean(i1)), _), (Object(Int(i2)), _) -> if i2 = 0 then raise DivByZeroError else (Object(Int(i1 / i2)), env)
 
@@ -85,6 +81,5 @@ and eval_binOp op e1 e2 env =
   | Multiply, (Object(Float(f)), _), (Object(Boolean(i)), _) -> (Object(Float(f *. float_of_int i )), env)
   | Divide, (Object(Boolean(i)), _), (Object(Float(f)), _) -> if f = 0.0 then raise DivByZeroError else (Object(Float(float_of_int i /. f)), env)
   | Divide, (Object(Float(f)), _), (Object(Boolean(i)), _) -> if i = 0 then raise DivByZeroError else (Object(Float(f /. float_of_int i)), env)
-
 
   | _, _, _ -> raise (TypeError("Cannot compare types"))

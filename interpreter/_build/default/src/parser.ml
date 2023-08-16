@@ -24,12 +24,14 @@ and parse_assignmentStmt tokens =
   | _ -> parse_functionCallStmt tokens
 
 and parse_functionCallStmt tokens =
-  match lookahead_many tokens 2 with
-  | Some [Token_Id id; Token_LParen] -> 
-    let t = match_token tokens (Token_Id id) in
-    let t' = match_token t Token_LParen in
-    let (t'', stmts) = parse_functionCallParameters t' in
-    (t'', FunctionCall(id, stmts))
+  match lookahead_many tokens 3 with
+  | Some [Token_Id id; Token_LParen; Token_RParen] ->
+    let t = match_many tokens [(Token_Id id); Token_LParen; Token_RParen] in
+    (t, FunctionCall(id, []))
+  | Some [Token_Id id; Token_LParen; _] -> 
+    let t = match_many tokens [(Token_Id id); Token_LParen] in
+    let (t', stmts) = parse_functionCallParameters t in
+    (t', FunctionCall(id, stmts))
   | _ -> parse_additiveStmt tokens
 
 and parse_functionCallParameters tokens =

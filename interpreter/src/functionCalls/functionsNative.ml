@@ -1,6 +1,6 @@
 open TypeDefinitions.PythonTypes
 
-type functionsNative = Print | NotInBuilt
+type functionsNative = Print | Abs | NotInBuilt
 
 let native_print (params : stmt list) (env : environment) : stmt * environment =
   match params with
@@ -16,6 +16,16 @@ let native_print (params : stmt list) (env : environment) : stmt * environment =
     | Object(Boolean(0)) -> print_endline "False"; (Object(None), env)
     | Object(None) -> print_endline "None"; (Object(None), env)
     | _ -> (Object(None), env)
+
+let native_abs (params : stmt list) (env : environment) : stmt * environment =
+  if List.length params != 1 then raise (TypeError(
+    "abs() takes exactly one argument (" ^ string_of_int (List.length params) ^ " given)"))
+  else
+    match params with
+    | [Object(Int(i))] -> (Object(Int(abs i)), env)
+    | [Object(Float(i))] -> (Object(Float(abs_float i)), env)
+    | [Object(Boolean(i))] -> (Object(Int(abs i)), env)
+    | _ -> raise (TypeError("Expected numeric type"))
 
 
   

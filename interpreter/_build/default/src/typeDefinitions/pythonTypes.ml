@@ -1,3 +1,6 @@
+exception TypeError of string
+exception DivByZeroError
+
 type op = Add | Subtract | Multiply | Divide
 
 and id = string
