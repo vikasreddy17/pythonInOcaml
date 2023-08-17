@@ -1,10 +1,10 @@
-# dune build
+# dune test
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root:
 # /Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter
 # Auto-detected concurrency: 8
-$ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/dune_643338_output
+$ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786ls0y740k3v0lfnl78r0000gn/T/dune_376bd1_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -113,5 +113,9 @@ $ /Users/vikasreddy/.opam/4.13.0/bin/ocamlc.opt -config > /var/folders/70/gx6786
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I src/eval -o src/eval/eval.cmxs src/eval/eval.cmxa)
-$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I src/eval/functionCalls -o src/eval/functionCalls/functionCalls.cmxs src/eval/functionCalls/functionCalls.cmxa)
+$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I test/.tests.eobjs/byte -I test/.tests.eobjs/native -I /Users/vikasreddy/.opam/4.13.0/lib/oUnit -I /Users/vikasreddy/.opam/4.13.0/lib/ounit2 -I /Users/vikasreddy/.opam/4.13.0/lib/ounit2/advanced -I /Users/vikasreddy/.opam/4.13.0/lib/seq -I /Users/vikasreddy/.opam/4.13.0/lib/stdlib-shims -I src/.interpreter.objs/byte -I src/.interpreter.objs/native -I src/eval/.eval.objs/byte -I src/eval/.eval.objs/native -I src/eval/functionCalls/.functionCalls.objs/byte -I src/eval/functionCalls/.functionCalls.objs/native -I src/parser/.parser.objs/byte -I src/parser/.parser.objs/native -I src/typeDefinitions/.typeDefinitions.objs/byte -I src/typeDefinitions/.typeDefinitions.objs/native -I src/utils/.utils.objs/byte -I src/utils/.utils.objs/native -intf-suffix .ml -no-alias-deps -opaque -o test/.tests.eobjs/native/dune__exe__Tests.cmx -c -impl test/tests.ml)
+$ (cd _build/default && /Users/vikasreddy/.opam/4.13.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/tests.exe /Users/vikasreddy/.opam/4.13.0/lib/ocaml/str.cmxa -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml src/typeDefinitions/typeDefinitions.cmxa src/eval/functionCalls/functionCalls.cmxa src/utils/utils.cmxa src/parser/parser.cmxa src/eval/eval.cmxa src/interpreter.cmxa /Users/vikasreddy/.opam/4.13.0/lib/ocaml/unix.cmxa -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml -I /Users/vikasreddy/.opam/4.13.0/lib/ocaml /Users/vikasreddy/.opam/4.13.0/lib/stdlib-shims/stdlib_shims.cmxa /Users/vikasreddy/.opam/4.13.0/lib/ounit2/advanced/oUnitAdvanced.cmxa /Users/vikasreddy/.opam/4.13.0/lib/ounit2/oUnit.cmxa test/.tests.eobjs/native/dune__exe__Tests.cmx)
+$ (cd _build/default/test && ./tests.exe)
+> ..
+> Ran: 2 tests in: 0.10 seconds.
+> OK

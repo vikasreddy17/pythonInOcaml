@@ -5,16 +5,16 @@ open Eval
 open TypeDefinitions.PythonTypes
 
 let capture_output f : string =
-  let (stdout_orig : Unix.file_descr) = Unix.dup Unix.stdout in
-  let temp_file = open_out "output_capture.txt" in
-  Unix.dup2 (Unix.descr_of_out_channel temp_file) Unix.stdout;
+  let (stdout_old) = Unix.dup Unix.stdout in
+  let output_channel = open_out "output_channel.txt" in
+  Unix.dup2 (Unix.descr_of_out_channel output_channel) Unix.stdout;
   f ();
   flush stdout;
-  Unix.dup2 stdout_orig Unix.stdout;
-  close_out temp_file;
-  let ic = open_in "output_capture.txt" in
-  let captured_output = really_input_string ic (in_channel_length ic) in
-  close_in ic;
+  Unix.dup2 stdout_old Unix.stdout;
+  close_out output_channel;
+  let input_channel = open_in "output_channel.txt" in
+  let captured_output = really_input_string input_channel (in_channel_length input_channel) in
+  close_in input_channel;
   captured_output
 
 let test_none _ =
