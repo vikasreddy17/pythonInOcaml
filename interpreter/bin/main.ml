@@ -16,8 +16,16 @@ let read_file (filename : string) : string =
   file_content
 
 let run (filename : string) =
+  (*
+  let print_list lst = List.iter (
+    fun element -> print_endline (Utils.ParserUtils.string_of_token element)
+  ) lst in
+  print_list (Lexer.tokenize (read_file filename));;
+  *)
+  (* Parser.parse_wrapper (Lexer.tokenize (read_file filename));;*)
   let env = Hashtbl.create 10 in
-  let (_, expr) = Parser.parse_wrapper (Lexer.tokenize (read_file filename)) in Eval.eval expr env;; 
+  let (_, expr) = Parser.parse_wrapper (Lexer.tokenize (read_file filename)) in 
+  Eval.eval expr env;;
 
 run arguments.(1);
 

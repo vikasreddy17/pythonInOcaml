@@ -1,4 +1,4 @@
 (library
  (name interpreter)
- (modules name lexer parser eval)
- (libraries str typeDefinitions functionCalls utils))
+ (modules name lexer)
+ (libraries str typeDefinitions functionCalls utils parser eval))

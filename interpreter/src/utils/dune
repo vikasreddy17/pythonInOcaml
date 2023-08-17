@@ -1,4 +1,4 @@
 (library
  (name utils)
  (modules parserUtils)
- (libraries str typeDefinitions))
+ (libraries typeDefinitions))

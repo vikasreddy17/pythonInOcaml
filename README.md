@@ -29,8 +29,10 @@
     * Printing
 
 ### Functions
-* Storing parameters as list to pass to function call architecture
+#### Calling
 * Function call router for in built functions
+* Storing parameters as list to pass to function call architecture
+* Function call and parameters must be on same line
 
 #### In Built Functions
 * print(a, b, c, ...)
