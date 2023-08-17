@@ -1,6 +1,5 @@
-open Interpreter
 open Interpreter.Lexer
-open Interpreter.Parser
-open Interpreter.Eval
+open Parser
+open Eval
 open TypeDefinitions.PythonTypes
 open TypeDefinitions.TokenTypes

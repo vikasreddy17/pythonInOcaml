@@ -1,5 +1,5 @@
 exception TypeError of string
-exception DivByZeroError
+exception ZeroDivisionError of string
 
 type op = Add | Subtract | Multiply | Divide
 

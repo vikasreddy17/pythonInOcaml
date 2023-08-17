@@ -21,7 +21,9 @@ Clflags.include_dirs :=
   ; "/Users/vikasreddy/.opam/4.13.0/lib/uutf"
   ; "/Users/vikasreddy/.opam/4.13.0/lib/zed"
   ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/.interpreter.objs/byte"
-  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/functionCalls/.functionCalls.objs/byte"
+  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/eval/.eval.objs/byte"
+  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/eval/functionCalls/.functionCalls.objs/byte"
+  ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/parser/.parser.objs/byte"
   ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/typeDefinitions/.typeDefinitions.objs/byte"
   ; "/Users/vikasreddy/Documents/git_repos/pythonInOcaml/interpreter/_build/default/src/utils/.utils.objs/byte"
   ];

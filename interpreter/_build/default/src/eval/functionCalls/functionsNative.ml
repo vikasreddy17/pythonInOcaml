@@ -2,21 +2,21 @@ open TypeDefinitions.PythonTypes
 
 type functionsNative = Print | Abs | NotInBuilt
 
-let rec native_print (params : stmt list) (env : environment) (count : int) : stmt * environment =
-  if count > 0 then print_string " ";
+let rec native_print (params : stmt list) (env : environment) (count : int) (str : string) : stmt * environment =
+  let str' = if count > 0 then str ^ " " else str in
   match params with
-  | [] -> print_endline ""; (Object(None), env)
+  | [] -> print_endline (String.trim str'); (Object(None), env)
   | stmt::t -> 
     match stmt with
-    | Object(Int(num)) -> print_string (string_of_int num); native_print t env (count+1)
+    | Object(Int(num)) -> let str'' = str' ^ (string_of_int num) in native_print t env (count+1) str''
     | Object(Float(num)) ->
       let s1 = string_of_float num in
       let s2 = if String.length s1 > 0 && String.get s1 (String.length s1 - 1) = '.' then s1 ^ "0" else s1 in
-      print_string s2; native_print t env (count+1)
-    | Object(Boolean(1)) -> print_string "True"; native_print t env (count+1)
-    | Object(Boolean(0)) -> print_string "False"; native_print t env (count+1)
-    | Object(None) -> print_string "None"; native_print t env (count+1)
-    | _ -> (Object(None), env)
+      let str'' = str' ^ s2 in native_print t env (count+1) str''
+    | Object(Boolean(1)) -> let str'' = str' ^ "True" in native_print t env (count+1) str''
+    | Object(Boolean(0)) -> let str'' = str' ^ "False" in native_print t env (count+1) str''
+    | Object(None) -> let str'' = str' ^ "None" in native_print t env (count+1) str''
+    | _ -> print_endline (String.trim str'); (Object(None), env)
 
 let native_abs (params : stmt list) (env : environment) : stmt * environment =
   if List.length params != 1 then raise (TypeError(
